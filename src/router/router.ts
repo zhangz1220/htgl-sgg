@@ -67,7 +67,7 @@ export const constantRoute = [
       {
         path: '/acl/user',
         component: () => import('@/views/acl/user/index.vue'),
-        name: 'Acl',
+        name: 'User',
         meta: {
           title: '用户管理',
           hidden: false, //菜单中是否隐藏

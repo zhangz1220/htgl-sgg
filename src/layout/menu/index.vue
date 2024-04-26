@@ -82,7 +82,9 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 //点击菜单
 const goRoute = (vc: any) => {
+  console.log('menuList===', menuList)
   let path = vc.index
+  console.log(path)
 
   console.log($router)
 
