@@ -5,13 +5,16 @@
         <h1>Hello</h1>
         <h1>欢迎来到甄选平台</h1>
         <el-form-item label="" prop="username">
-          <el-input :prefix-icon="User" v-model="loginForm.username" placeholder="账号" />
+          <el-input :prefix-icon="User" v-model="loginForm.username" placeholder="账号" @keyup.enter.native="login" />
         </el-form-item>
         <el-form-item label="" prop="password">
-          <el-input v-model="loginForm.password" type="password" :prefix-icon="Lock" placeholder="密码" show-password />
+          <el-input v-model="loginForm.password" type="password" :prefix-icon="Lock" placeholder="密码"
+            @keyup.enter.native="login" show-password />
         </el-form-item>
         <el-form-item>
-          <el-button class="login_btn" type="primary" @click="login">登录</el-button>
+          <el-button class="login_btn" type="primary" :loading="loading" @click.native.prevent="login">
+            {{ loading ? '登录中' : '登录' }}
+          </el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -37,6 +40,7 @@ onMounted(() => {
 })
 
 let loginForm = reactive({ username: 'admin', password: '111111' })
+let loading = ref(false)
 let rules = {
   username: [
     { required: true, min: 2, max: 10, message: '账号长度至少两位', trigger: 'change' }
@@ -50,9 +54,10 @@ let rules = {
 const login = async () => {
   //表单校验
   await loginFormRef.value.validate()
-  console.log('登录...')
+  loading.value = true
   //调用store方法
   userStore.userLogin(loginForm).then(res => {
+    loading.value = false
     $router.push('/layout')
     ElNotification({
       type: 'success',
@@ -61,6 +66,7 @@ const login = async () => {
     })
     // userStore.getUserinfo() //获取用户信息 操作 放到路由前置守卫了
   }).catch(error => {
+    loading.value = false
     ElNotification({
       type: 'error',
       message: error.message
