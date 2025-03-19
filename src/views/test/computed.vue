@@ -1,11 +1,12 @@
 <template>
   <div>
-    姓：<input type="text" v-model="firstName"> <br>
+    <!-- 姓：<input type="text" v-model="firstName"> <br>
     名：<input type="text" v-model="lastName"> <br>
     全名：{{ fullName }} <br>
     <button type="paimary" @click="changeFullname">修改全名</button> <br>
     <button type="paimary" @click="changeAge">修改年龄</button> <br>
-    年龄：{{ age }} <br>
+    年龄：{{ age }} <br> -->
+    <iframe src="https://docmee.cn/open-platform" frameborder="0" width="1000" height="800"></iframe>
   </div>
 </template>
 <script setup>

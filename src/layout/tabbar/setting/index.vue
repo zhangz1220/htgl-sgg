@@ -1,4 +1,6 @@
 <template>
+  <el-switch v-model="isDark" size="small"
+    style="--el-switch-on-color: #303432; --el-switch-off-color: #03A9F4;padding-right: 5px;" @change="useTheme" />
   <el-button :icon="Refresh" circle size="small" @click="updataRefsh" />
   <el-button :icon="FullScreen" circle size="small" @click="fullScreen" />
   <el-button :icon="Setting" circle size="small" />
@@ -30,7 +32,17 @@ let LayOutSettingStore = useLayOutSettingStore()
 let useStore = useUserStore()
 
 let $router = useRouter() //获取路由器对象
+import { ref } from 'vue'
 
+let isDark = ref(false)
+let theme = ref('light')
+
+//主题切换
+const useTheme = () => {
+  console.log(isDark.value)
+  theme.value = isDark.value ? 'dark' : 'light'
+  console.log(theme.value)
+}
 //刷新按钮
 const updataRefsh = () => {
   LayOutSettingStore.refsh = !LayOutSettingStore.refsh

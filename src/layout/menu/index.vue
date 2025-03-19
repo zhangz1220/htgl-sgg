@@ -5,9 +5,9 @@
   </div>
   <el-scrollbar class="scrollbar">
     <!-- 菜单 -->
-    <el-menu :collapse="LayOutSettingStore.fold ? true : false" active-text-color="#2196F3" background-color="#001529"
-      class="el-menu-vertical-demo" :default-active="$route.path" text-color="#fff" @open="handleOpen"
-      @close="handleClose" v-for="(item, index) in menuList" :key="item.path">
+    <el-menu :collapse="LayOutSettingStore.fold ? true : false" background-color="#001529" class="el-menu-vertical-demo"
+      :default-active="$route.path" text-color="#fff" @open="handleOpen" @close="handleClose"
+      v-for="(item, index) in menuList" :key="item.path">
 
       <!-- 没有子路由 -->
       <template v-if="!item.children">
@@ -127,5 +127,10 @@ export default {
   .el-menu {
     border-right: none;
   }
+}
+
+.el-menu-item.is-active {
+  color: #fff;
+  background-color: #2196F3;
 }
 </style>
